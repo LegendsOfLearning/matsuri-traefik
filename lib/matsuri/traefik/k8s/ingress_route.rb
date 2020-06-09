@@ -4,7 +4,7 @@ require 'active_support/core_ext/hash/compact'
 # rubocop:disable Style/Alias
 module Matsuri
   module Traefik
-    module K8s
+    module K8S
       class IngressRoute < Matsuri::Kubernetes::Base
         let(:api_version) { 'traefik.containo.us/v1alpha1' }
         let(:klind)       { 'IngressRoute' }
@@ -74,6 +74,16 @@ module Matsuri
 
         # For now, you can override the tls by adding in your own hash
         # TLS to be implemented in the future
+
+        class << self
+          def load_path
+            Matsuri::Config.traefik.ingress_routes_path
+          end
+
+          def definition_module_name
+            'Treafik::IngressRoutes'
+          end
+        end
       end
     end
   end

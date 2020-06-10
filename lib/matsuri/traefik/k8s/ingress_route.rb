@@ -7,7 +7,7 @@ module Matsuri
     module K8S
       class IngressRoute < Matsuri::Kubernetes::Base
         let(:api_version) { 'traefik.containo.us/v1alpha1' }
-        let(:klind)       { 'IngressRoute' }
+        let(:kind)        { 'IngressRoute' }
 
         let(:spec) do
           {
@@ -81,7 +81,7 @@ module Matsuri
           end
 
           def definition_module_name
-            'Treafik::IngressRoutes'
+            'TraefikIngressRoutes'
           end
         end
       end

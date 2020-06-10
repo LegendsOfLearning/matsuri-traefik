@@ -111,7 +111,7 @@ spec:
 # Example DSL
 
 ```
-Matsuri.define :pod, "slug-runner" do
+Matsuri.define :traefik_ingress_route, "main_platform" do
   let(:entry_points) { %w[foo] }
   let(:routes) { [test_example_route] }
   
@@ -119,7 +119,7 @@ Matsuri.define :pod, "slug-runner" do
   let(:test_example_route) do
     rule "Host('test.example.com')",
       priority: 10,
-      middleware: [ middleware('middleware1', namespace: 'default') ],
+      middlewares: [ middleware('middleware1', namespace: 'default') ],
       services: [foo_service]
   end
   
@@ -147,8 +147,8 @@ Matsuri.define :pod, "slug-runner" do
       pass_host_header: true,
       port: 80,
       response_forwarding: { flushInterval: '1ms' },
-      scheme: 'https,
-      sticky: cookie('cookie', http_only: true, secure: true, same_site: 'none',
+      scheme: 'https',
+      sticky: cookie('cookie', http_only: true, secure: true, same_site: 'none'),
       strategy: 'RoundRobin',
       weight: 10
   end

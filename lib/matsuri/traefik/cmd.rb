@@ -10,22 +10,28 @@ module Matsuri
       module Create
         extend ActiveSupport::Concern
 
-        desc 'traefik/ingress_route NAME', 'create an ingress_route'
-        create_cmd_for 'traefik/ingress_route'
-        # map sts: :stateful_set
+        included do
+          desc 'traefik/ingress_route NAME', 'create an ingress_route'
+          create_cmd_for 'traefik_ingress_route'
+          map "traefik/ingress-route" => :traefik_ingress_route
+          # map sts: :stateful_set
+        end
       end
 
       module Show
         extend ActiveSupport::Concern
 
-        desc 'traefik/ingress_route NAME', 'show an ingress_route'
-        show_cmd_for 'traefik/ingress_route'
+        included do
+          desc 'traefik/ingress_route NAME', 'show an ingress_route'
+          show_cmd_for 'traefik_ingress_route'
+          map "traefik/ingress-route" => :traefik_ingress_route
+        end
       end
     end
   end
 end
 
-Matsuri::Cmd::Show.send(:include, Matsuri::Traefik::Cmd::Show)
+Matsuri::Cmds::Show.send(:include, Matsuri::Traefik::Cmd::Show)
 
 
 

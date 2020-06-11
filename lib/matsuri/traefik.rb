@@ -5,6 +5,13 @@ module Matsuri
     module K8S
       autoload :IngressRoute, 'matsuri/traefik/k8s/ingress_route'
     end
+
+    module Manifests
+      module Pods
+        # autoload :IngressController_1_7, 'matsuri/traefik/manifests/pods/ingress-controller-1-7'
+        autoload :IngressController_2_2, 'matsuri/traefik/manifests/pods/ingress-controller-2-2'
+      end
+    end
   end
 end
 

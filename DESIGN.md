@@ -108,7 +108,7 @@ spec:
 
 ```
 
-# Example DSL
+#### Example DSL
 
 ```
 Matsuri.define :traefik_ingress_route, "main_platform" do
@@ -154,3 +154,20 @@ Matsuri.define :traefik_ingress_route, "main_platform" do
   end
 end
 ```
+
+### Installing
+
+```
+# Traefik 1.7
+Matsuri.define :pod, 'traefik-ingress-controller' do
+  include Matsuri::Traefik::Manifests::Pods::IngressController_1_7
+end
+```
+
+```
+# Traefik 2.2
+Matsuri.define :pod, 'traefik-ingress-controller' do
+  include Matsuri::Traefik::Manifests::Pods::IngressController_2_2
+end
+```
+

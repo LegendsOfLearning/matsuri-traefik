@@ -7,6 +7,11 @@ module Matsuri
     end
 
     module Manifests
+      module DaemonSets
+        # autoload :IngressController_1_7, 'matsuri/traefik/manifests/pods/ingress-controller-1-7'
+        autoload :IngressController, 'matsuri/traefik/manifests/daemon_sets/ingress-controller'
+      end
+
       module Pods
         # autoload :IngressController_1_7, 'matsuri/traefik/manifests/pods/ingress-controller-1-7'
         autoload :IngressController_2_2, 'matsuri/traefik/manifests/pods/ingress-controller-2-2'

@@ -1,7 +1,9 @@
 require 'active_support/concern'
 
 # Include this module in the Matsuri pod definition with this:
-# include Matsuri::Traefik::manifests::Pods::IngressController_2_2
+# Matsuri.define :pod, 'traefik-ingress-controller' do
+#   include Matsuri::Traefik::Manifests::Pods::IngressController_2_2
+# end
 module Matsuri
   module Traefik
     module Manifests

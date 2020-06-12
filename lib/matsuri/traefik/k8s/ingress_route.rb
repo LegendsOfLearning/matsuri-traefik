@@ -32,6 +32,12 @@ module Matsuri
 
         let(:default_service) { fail NotImplemented, "Must implement let(:default_service)" }
 
+        def match_host(hosts)
+          hosts = Array(hosts)
+          host_params = hosts.map { |x| "`#{x}`" }.join(",")
+          "Host(#{host_params})"
+        end
+
         def rule(match, priority: nil, middlewares: [], services:)
           {
             match: match,

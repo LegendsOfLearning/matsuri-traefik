@@ -27,8 +27,10 @@ module Matsuri
           rule "Host('test.example.com')",
             priority: 10,
             middleware: [ middleware('middleware1', namespace: 'default') ],
-            services: [foo_service]
+            services: [default_service]
         end
+
+        let(:default_service) { fail NotImplemented, "Must implement let(:default_service)" }
 
         def rule(match, priority: nil, middlewares: [], services:)
           {
@@ -51,6 +53,7 @@ module Matsuri
           {
             kind: 'Service',
             name: name,
+            port: opts[:port],
             passHostHeader: opts.key?(:pass_host_header) ? opts[:pass_host_header] : true,
             responseForwarding: opts[:response_forwarding],
             scheme: opts[:scheme] || 'https',

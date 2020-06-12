@@ -32,6 +32,7 @@ module Matsuri
 
         def rule(match, priority: nil, middlewares: [], services:)
           {
+            match: match,
             kind: 'Rule',
             priority: priority,
             middlewares: middlewares,

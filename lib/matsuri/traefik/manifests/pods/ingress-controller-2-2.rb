@@ -32,6 +32,8 @@ module Matsuri
 
             let(:log_level)     { 'warn' }
 
+            let(:service_account_name) { 'traefik-ingress-controller' }
+
             # Set this to an array of namespaces
             let(:watch_namespaces) { nil }
 
@@ -99,7 +101,8 @@ module Matsuri
 
             let(:default_args) do
               %W[
-                --logLevel=#{log_level}
+                --log=true
+                --log.level=#{log_level}
                 --accesslog
                 --api
                 --providers.kubernetescrd

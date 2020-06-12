@@ -16,6 +16,8 @@ module Matsuri
         # autoload :IngressController_1_7, 'matsuri/traefik/manifests/pods/ingress-controller-1-7'
         autoload :IngressController_2_2, 'matsuri/traefik/manifests/pods/ingress-controller-2-2'
       end
+
+      autoload :RBAC, 'matsuri/traefik/manifests/rbac'
     end
   end
 end

@@ -103,10 +103,11 @@ module Matsuri
               %W[
                 --log=true
                 --log.level=#{log_level}
-                --accesslog
-                --api
-                --providers.kubernetescrd
-                --ping
+                --accesslog=true
+                --api=true
+                --providers.kubernetescrd=true
+                --ping=true
+                --ping.entryPoint=http
                 ]
             end
 

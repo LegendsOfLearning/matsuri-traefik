@@ -31,6 +31,8 @@ module Matsuri
               ingressrouteudps
               tlsoptions
               tlsstores
+              serverstransports
+              middlewaretcps
             ],
               verbs: %w[get list watch],
               api_groups: 'traefik.containo.us'

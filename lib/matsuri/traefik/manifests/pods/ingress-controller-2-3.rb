@@ -9,11 +9,11 @@ module Matsuri
   module Traefik
     module Manifests
       module Pods
-        module IngressController_2_2
+        module IngressController_2_3
           extend ActiveSupport::Concern
 
           included do
-            let(:version)       { '2.2' }
+            let(:version)       { '2.3' }
 
             let(:namespace)     { 'kube-system' }
             let(:labels)        { { 'ingress-controller' => 'traefik2' } }
@@ -66,7 +66,8 @@ module Matsuri
               [
                 all_entrypoints_args,
                 default_args,
-                namespace_arg
+                namespace_arg,
+                plugin_args,
               ].compact.flatten
             end
 
@@ -149,6 +150,13 @@ module Matsuri
             else
               entrypoint_arg(name, "#{key}.trustedIPs", opt)
             end
+          end
+
+          def plugin_arg(name, module_name:, version:)
+            [
+              "--experimental.plugins.#{name}.modulename=#{module_name}",
+              "--experimental.plugins.#{name}.version=#{version}"
+            ]
           end
 
           def maybe(cond)

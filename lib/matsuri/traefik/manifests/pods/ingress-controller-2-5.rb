@@ -31,6 +31,8 @@ module Matsuri
             let(:image)         { "docker.io/library/traefik:#{version}" }
 
             let(:log_level)     { 'warn' }
+            let(:access_logs)   { true }
+            let(:traefik_api)   { true }
 
             let(:service_account_name) { 'traefik-ingress-controller' }
 
@@ -104,8 +106,8 @@ module Matsuri
               %W[
                 --log=true
                 --log.level=#{log_level}
-                --accesslog=true
-                --api=true
+                --accesslog=#{access_logs}
+                --api=#{traefik_api}
                 --providers.kubernetescrd=true
                 --ping=true
                 --ping.entryPoint=http

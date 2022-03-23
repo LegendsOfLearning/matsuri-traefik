@@ -5,6 +5,7 @@ module Matsuri
     module K8S
       autoload :IngressRoute, 'matsuri/traefik/k8s/ingress_route'
       autoload :Middleware,   'matsuri/traefik/k8s/middleware'
+      autoload :TLSOption,    'matsuri/traefik/k8s/tls_option'
     end
 
     module Manifests
@@ -29,6 +30,7 @@ end
 Matsuri::Config.config_context(:traefik) do
   default(:traefik_base_path)   { File.join Matsuri::Config.platform_path, 'traefik' }
   default(:ingress_routes_path) { File.join traefik_base_path, 'ingress_routes' }
+  default(:tls_options_path)    { File.join traefik_base_path, 'tls_options' }
   default(:middlewares_path)    { File.join traefik_base_path, 'middlewares' }
 end
 
@@ -37,3 +39,4 @@ require 'matsuri/traefik/cmd'
 
 Matsuri::Registry.register_class 'traefik_ingress_route', class: Matsuri::Traefik::K8S::IngressRoute
 Matsuri::Registry.register_class 'traefik_middleware',    class: Matsuri::Traefik::K8S::Middleware
+Matsuri::Registry.register_class 'traefik_tls_option',    class: Matsuri::Traefik::K8S::TLSOption

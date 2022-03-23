@@ -8,6 +8,7 @@ This document sketches out the design for the `matsuri-traefik` plugin.
 
 ```
 bin/matsuri staging apply traefik/middleware redirect_to_https
+bin/matsuri staging apply traefik/tls_option tls12
 bin/matsuri staging apply traefik/ingress_route api
 bin/matsuri staging apply traefik/ingress_route auth
 bin/matsuri staging apply traefik/service auth
@@ -17,6 +18,7 @@ I thought about creating a sub resources with crd like so:
 
 ```
 bin/matsuri staging apply crd middleware redirect_to_https
+bin/matsuri staging apply crd tls_option tls12
 bin/matsuri staging apply crd ingress_route api
 bin/matsuri staging apply crd ingress_route auth
 ```
@@ -28,6 +30,7 @@ I had also thought about using non-namespaced resource names:
 
 ```
 bin/matsuri staging apply middleware redirect_to_https
+bin/matsuri staging apply tls_option tls12
 bin/matsuri staging apply ingress_route api
 bin/matsuri staging apply ingress_route auth
 bin/matsuri staging apply traefik_service auth
@@ -42,6 +45,7 @@ Examples:
 
 ```
 platform/traefix/middlewares/redirect_to_https.rb
+platform/traefix/tls_options/tls12.rb
 platform/traefix/ingress_routes/api.rb
 platform/traefix/ingress_routes/staging/api.rb
 platform/traefix/services/auth.rb
@@ -111,36 +115,50 @@ spec:
 #### Example DSL
 
 ```
+Matsuri.define :traefik_tls_option, "opt" do
+  let(:min_version) { "VersionTLS13" }
+  let(:max_version) { "VersionTLS13" }
+
+  let(:client_auth) do
+    client_auth_config "RequireAndVerifyClientCert",
+      ca_files: %W[
+        tests/clientca1.crt
+        tests/clientca2.crt
+      ]
+  end
+
+  let(:cipher_suites) do
+    %W[
+      TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+    ]
+  end
+end
+```
+
+```
 Matsuri.define :traefik_ingress_route, "main_platform" do
   let(:entry_points) { %w[foo] }
   let(:routes) { [test_example_route] }
-  
-  
+
+
   let(:test_example_route) do
     rule "Host('test.example.com')",
       priority: 10,
       middlewares: [ middleware('middleware1', namespace: 'default') ],
       services: [foo_service]
   end
-  
+
   let(:tls) do
-    {
-      secretName: 'supersecret', 
-      options:
-        name: opt,
-        namespace: default,
-      certResolver: 'foo',
-      domains: [
-        { 
-          main: 'example.net',
-          sans: %w[a.example.net b.example.net]
-        }
-      ]
-    }
+    tls_config secretName: 'super_secret',
+               options: tls_option('opt', namespace: 'default'),
+               certResolver: 'foo',
+               domains: [
+                 tls_domain('example.net', sans: %w[a.example.net b.example.net])
+               ]
   end
-  
-  
-  
+
+
+
   let(:foo_service) do
     k8s_service 'foo',
       namespace: 'default',

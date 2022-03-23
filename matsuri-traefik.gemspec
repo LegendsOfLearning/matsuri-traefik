@@ -1,26 +1,36 @@
-# coding: utf-8
-lib = File.expand_path('../lib', __FILE__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'matsuri/traefik/version'
+# -*- encoding: utf-8 -*-
+# stub: matsuri-traefik 0.1.0 ruby lib
 
-Gem::Specification.new do |spec|
-  spec.name          = "matsuri-traefik"
-  spec.version       = Matsuri::Traefik::VERSION
-  spec.authors       = ["Ho-Sheng Hsiao"]
-  spec.email         = ["talktohosh@gmail.com"]
+Gem::Specification.new do |s|
+  s.name = "matsuri-traefik".freeze
+  s.version = "0.1.0"
 
-  spec.summary       = %q{Traefik plugin for Matsuri}
-  spec.description   = %q{Traefik CRD and controller definitions for Matsuri}
-  spec.homepage      = "https://github.com/matsuri-rb/matsuri-traefik"
+  s.required_rubygems_version = Gem::Requirement.new(">= 0".freeze) if s.respond_to? :required_rubygems_version=
+  s.require_paths = ["lib".freeze]
+  s.authors = ["Ho-Sheng Hsiao".freeze]
+  s.date = "1980-01-01"
+  s.description = "Traefik CRD and controller definitions for Matsuri".freeze
+  s.email = ["talktohosh@gmail.com".freeze]
+  s.files = [".gitignore".freeze, "DESIGN.md".freeze, "LICENSE".freeze, "README.md".freeze, "lib/matsuri/traefik.rb".freeze, "lib/matsuri/traefik/cmd.rb".freeze, "lib/matsuri/traefik/k8s/ingress_route.rb".freeze, "lib/matsuri/traefik/k8s/middleware.rb".freeze, "lib/matsuri/traefik/k8s/tls_option.rb".freeze, "lib/matsuri/traefik/manifests/daemon_sets/ingress-controller.rb".freeze, "lib/matsuri/traefik/manifests/pods/ingress-controller-1-7.rb".freeze, "lib/matsuri/traefik/manifests/pods/ingress-controller-2-2.rb".freeze, "lib/matsuri/traefik/manifests/pods/ingress-controller-2-3.rb".freeze, "lib/matsuri/traefik/manifests/pods/ingress-controller-2-5.rb".freeze, "lib/matsuri/traefik/manifests/rbac.rb".freeze, "lib/matsuri/traefik/manifests/v2.2/crd.yaml".freeze, "lib/matsuri/traefik/manifests/v2.5/crd.yaml".freeze, "lib/matsuri/traefik/manifests/v2.5/ingressroute.yaml".freeze, "lib/matsuri/traefik/manifests/v2.5/ingressroutetcp.yaml".freeze, "lib/matsuri/traefik/manifests/v2.5/ingressrouteudp.yaml".freeze, "lib/matsuri/traefik/manifests/v2.5/middlewares.yaml".freeze, "lib/matsuri/traefik/manifests/v2.5/middlewarestcp.yaml".freeze, "lib/matsuri/traefik/manifests/v2.5/serverstransports.yaml".freeze, "lib/matsuri/traefik/manifests/v2.5/tlsoptions.yaml".freeze, "lib/matsuri/traefik/manifests/v2.5/tlsstores.yaml".freeze, "lib/matsuri/traefik/manifests/v2.5/traefikservices.yaml".freeze, "lib/matsuri/traefik/version.rb".freeze, "matsuri-traefik.gemspec".freeze]
+  s.homepage = "https://github.com/matsuri-rb/matsuri-traefik".freeze
+  s.rubygems_version = "3.2.26".freeze
+  s.summary = "Traefik plugin for Matsuri".freeze
 
-  spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
-  spec.bindir        = "bin"
-  spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
-  spec.require_paths = ["lib"]
+  s.installed_by_version = "3.2.26" if s.respond_to? :installed_by_version
 
-  spec.add_dependency 'matsuri'
+  if s.respond_to? :specification_version then
+    s.specification_version = 4
+  end
 
-  spec.add_development_dependency "bundler", "~> 1.10"
-  spec.add_development_dependency "rake", "~> 10.0"
-  spec.add_development_dependency "rspec"
+  if s.respond_to? :add_runtime_dependency then
+    s.add_runtime_dependency(%q<matsuri>.freeze, [">= 0"])
+    s.add_development_dependency(%q<bundler>.freeze, ["~> 1.10"])
+    s.add_development_dependency(%q<rake>.freeze, ["~> 10.0"])
+    s.add_development_dependency(%q<rspec>.freeze, [">= 0"])
+  else
+    s.add_dependency(%q<matsuri>.freeze, [">= 0"])
+    s.add_dependency(%q<bundler>.freeze, ["~> 1.10"])
+    s.add_dependency(%q<rake>.freeze, ["~> 10.0"])
+    s.add_dependency(%q<rspec>.freeze, [">= 0"])
+  end
 end

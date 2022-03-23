@@ -82,8 +82,39 @@ module Matsuri
         let(:tls) { no_tls } # default
         let(:no_tls) { nil }
 
-        # For now, you can override the tls by adding in your own hash
-        # TLS to be implemented in the future
+        def tls_config(cert_resolver: nil, domains: nil, options: nil, secret_name: nil, store: nil)
+          domains = domains.nil?? nil : Array(domains)
+
+          {
+            certResolver: cert_resolver,
+            domains: domains,
+            options: options,
+            secretName: secret_name,
+            store: store,
+          }.compact
+        end
+
+        def tls_domain(main, sans: [])
+          {
+            main: main,
+            sans: Array(sans),
+          }
+        end
+
+        def tls_option(name, namespace = 'default')
+          {
+            name: name,
+            namespace: namespace,
+          }
+        end
+
+        def tls_store(name, namespace = 'default')
+          {
+            name: name,
+            namespace: namespace,
+          }
+        end
+
 
         class << self
           def load_path

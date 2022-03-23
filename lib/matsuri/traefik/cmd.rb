@@ -18,6 +18,11 @@ module Matsuri
           desc 'traefik/middleware NAME', 'apply a middleware'
           apply_cmd_for 'traefik_middleware'
           map "traefik/middleware" => :traefik_middleware
+
+          desc 'traefik/tls_option NAME', 'apply a tls_option'
+          apply_cmd_for 'traefik_tls_option'
+          map "traefik/tls_option" => :traefik_tls_option
+          map "traefik/tls-option" => :traefik_tls_option
         end
       end
 
@@ -33,6 +38,11 @@ module Matsuri
           desc 'traefik/middleware NAME', 'create a middleware'
           create_cmd_for 'traefik_middleware'
           map "traefik/middleware" => :traefik_middleware
+
+          desc 'traefik/tls_option NAME', 'create a tls_option'
+          create_cmd_for 'traefik_tls_option'
+          map "traefik/tls_option" => :traefik_tls_option
+          map "traefik/tls-option" => :traefik_tls_option
         end
       end
 
@@ -48,6 +58,11 @@ module Matsuri
           desc 'traefik/middleware NAME', 'show a middleware'
           show_cmd_for 'traefik_middleware'
           map "traefik/middleware" => :traefik_middleware
+
+          desc 'traefik/tls_option NAME', 'show a tls_option'
+          show_cmd_for 'traefik_tls_option'
+          map "traefik/tls_option" => :traefik_tls_option
+          map "traefik/tls-option" => :traefik_tls_option
         end
       end
 
@@ -63,6 +78,11 @@ module Matsuri
           desc 'traefik/middleware NAME', 'delete a middleware'
           delete_cmd_for 'traefik_middleware'
           map "traefik/middleware" => :traefik_middleware
+
+          desc 'traefik/tls_option NAME', 'delete a tls_option'
+          delete_cmd_for 'traefik_tls_option'
+          map "traefik/tls_option" => :traefik_tls_option
+          map "traefik/tls-option" => :traefik_tls_option
         end
       end
 
@@ -78,6 +98,11 @@ module Matsuri
           desc 'traefik/middleware NAME', 'diff a middleware'
           diff_cmd_for 'traefik_middleware'
           map "traefik/middleware" => :traefik_middleware
+
+          desc 'traefik/tls_option NAME', 'diff a tls_option'
+          diff_cmd_for 'traefik_tls_option'
+          map "traefik/tls_option" => :traefik_tls_option
+          map "traefik/tls-option" => :traefik_tls_option
         end
       end
 
@@ -93,6 +118,11 @@ module Matsuri
           desc 'traefik/middleware NAME', 'recreate a middleware'
           recreate_cmd_for 'traefik_middleware'
           map "traefik/middleware" => :traefik_middleware
+
+          desc 'traefik/tls_option NAME', 'recreate a tls_option'
+          recreate_cmd_for 'traefik_tls_option'
+          map "traefik/tls_option" => :traefik_tls_option
+          map "traefik/tls-option" => :traefik_tls_option
         end
       end
     end
